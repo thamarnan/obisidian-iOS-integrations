@@ -46,7 +46,7 @@ const paramPath = params[2];
 const refreshRateInSeconds = 300;
 
 const WIDGET_FONTS = {
-    small: 		{ WIDGET_TITLE: 20, WIDGET_DESCRIPTION: 14, rowOutput: 5  },
+    small: 		{ WIDGET_TITLE: 10, WIDGET_DESCRIPTION: 7, rowOutput: 10  },
     medium: 		{ WIDGET_TITLE: 22, WIDGET_DESCRIPTION: 14, rowOutput: 5  },
     large: 		{ WIDGET_TITLE: 24, WIDGET_DESCRIPTION: 14, rowOutput: 12 },
     extraLarge: 	{ WIDGET_TITLE: 26, WIDGET_DESCRIPTION: 15, rowOutput: 12 },
