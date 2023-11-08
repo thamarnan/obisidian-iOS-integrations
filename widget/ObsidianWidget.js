@@ -75,7 +75,7 @@ async function createWidget() {
    let titleText = paramPath ?  paramPath.replace(".md","") : "";
   	if(paramMode==="RECENT") titleText = "Recent";
   	if(paramMode==="STARRED") titleText = "Starred";
-   const widgetTitleText = titleStack.addText( "Obsidian: " + titleText );
+   const widgetTitleText = titleStack.addText( titleText );
    widgetTitleText.font = Font.boldSystemFont(getWidgetFont('WIDGET_TITLE'));
 	
   	if( !fm.bookmarkExists(paramBookmark) ) {
