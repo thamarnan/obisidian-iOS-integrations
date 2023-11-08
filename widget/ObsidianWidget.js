@@ -71,6 +71,7 @@ async function createWidget() {
 	widget.refreshAfterDate = new Date(Date.now() + 1000 * refreshRateInSeconds); // add XX second to now
 
    const titleStack = widget.addStack();
+// setPadding(top: number, leading: number, bottom: number, trailing: number)
    titleStack.setPadding(10, 0, 10, 0);
    let titleText = paramPath ?  paramPath.replace(".md","") : "";
   	if(paramMode==="RECENT") titleText = "Recent";
@@ -95,9 +96,12 @@ async function createWidget() {
 }
 
 async function displayFile(widget) {
+	
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
 	const row = widget.addStack();
+	let font1 = new Font("Menlo-Regular", 10)
+	row.font = font1
 	const fileName = row.addText( contentsString );
 	if (!config.runsWithSiri) row.url = `obsidian://open?vault=${encodeURIComponent(paramBookmark)}&file=${encodeURIComponent(paramPath)}`;
 }
