@@ -96,7 +96,8 @@ async function createWidget() {
 }
 
 async function displayFile(widget) {
-	const displayFileFont = new Font("HelveticaNeue", 9)	
+	displayFileFont = new Font("Arial", 9)	
+	// available font at http://iosfonts.com/
 	
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
