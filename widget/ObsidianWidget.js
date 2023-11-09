@@ -90,22 +90,21 @@ async function createWidget() {
 			await displayFilesFromFolder(widget);
   		else if(paramMode==="FILE")
 			await displayFile(widget)
-		
 	}
 	 widget.addSpacer();
     return widget;
 }
 
 async function displayFile(widget) {
-	font1 = new Font("Menlo-Regular", 10)
-	let widtext = widget.addText("Whatever text!")
-	widtext.font = font1
+	const displayFileFont = new Font("HelveticaNeue", 9)	
 	
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
 	const row = widget.addStack();
+	
 	const fileName = row.addText( contentsString );
-	fileName.font = font1
+	fileName.font = displayFileFont
+	
 	if (!config.runsWithSiri) row.url = `obsidian://open?vault=${encodeURIComponent(paramBookmark)}&file=${encodeURIComponent(paramPath)}`;
 }
 
