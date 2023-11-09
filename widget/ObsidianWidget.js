@@ -89,9 +89,6 @@ async function createWidget() {
 	 	else if(paramMode==="FOLDER")
 			await displayFilesFromFolder(widget);
   		else if(paramMode==="FILE")
-			let font1 = new Font("Menlo-Regular", 10)
-			let widtext = widget.addText("Whatever text!")
-			widtext.font = font1
 			await displayFile(widget)
 		
 	}
@@ -100,11 +97,15 @@ async function createWidget() {
 }
 
 async function displayFile(widget) {
+	font1 = new Font("Menlo-Regular", 10)
+	let widtext = widget.addText("Whatever text!")
+	widtext.font = font1
 	
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
 	const row = widget.addStack();
 	const fileName = row.addText( contentsString );
+	fileName.font = font1
 	if (!config.runsWithSiri) row.url = `obsidian://open?vault=${encodeURIComponent(paramBookmark)}&file=${encodeURIComponent(paramPath)}`;
 }
 
