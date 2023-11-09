@@ -102,8 +102,8 @@ async function displayFile(widget) {
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
 	const row = widget.addStack();
-	
-	const fileName = row.addText( contentsString );
+	contentsString1 = contentsString.replace(/(\r\n|\r|\n)/g, '¶\n');
+	const fileName = row.addText( contentsString1 );
 	fileName.font = displayFileFont
 	
 	if (!config.runsWithSiri) row.url = `obsidian://open?vault=${encodeURIComponent(paramBookmark)}&file=${encodeURIComponent(paramPath)}`;
