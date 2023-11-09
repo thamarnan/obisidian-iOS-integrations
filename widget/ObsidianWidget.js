@@ -45,6 +45,12 @@ const paramMode = params[1] ? (params[1]).toUpperCase() : "RECENT";
 const paramPath = params[2]; 
 const refreshRateInSeconds = 300;
 
+// ---- Customize Settings
+Show_Title = false;
+displayFileFont = new Font("Arial", 9)	// available font at http://iosfonts.com/
+
+// ----
+
 const WIDGET_FONTS = {
     small: 		{ WIDGET_TITLE: 10, WIDGET_DESCRIPTION: 7, rowOutput: 10  },
     medium: 		{ WIDGET_TITLE: 22, WIDGET_DESCRIPTION: 14, rowOutput: 5  },
@@ -76,8 +82,11 @@ async function createWidget() {
    let titleText = paramPath ?  paramPath.replace(".md","") : "";
   	if(paramMode==="RECENT") titleText = "Recent";
   	if(paramMode==="STARRED") titleText = "Starred";
+
+   if(Show_Title === true) {	
    const widgetTitleText = titleStack.addText( titleText );
    widgetTitleText.font = Font.boldSystemFont(getWidgetFont('WIDGET_TITLE'));
+   }
 	
   	if( !fm.bookmarkExists(paramBookmark) ) {
 	  	errorMessage(widget, "The Scriptable bookmark does not exist for your Obsidian vault. Open settings in Scriptable and create a Bookmark to the root folder of your vault.");
@@ -96,14 +105,15 @@ async function createWidget() {
 }
 
 async function displayFile(widget) {
-	displayFileFont = new Font("Arial", 9)	
-	// available font at http://iosfonts.com/
+
 	
   	const vaultPath = fm.bookmarkedPath(paramBookmark); 
 	const contentsString = await fm.readString( vaultPath + "/" + paramPath );
 	const row = widget.addStack();
-	contentsString1 = contentsString.replace(/(\r\n|\r|\n)/g, '¶\n');
-	const fileName = row.addText( contentsString1 );
+	
+	contentsString_final = contentsString.replace(/(\r\n|\r|\n)/g, '¶\n');
+	
+	const fileName = row.addText( contentsString_final );
 	fileName.font = displayFileFont
 	
 	if (!config.runsWithSiri) row.url = `obsidian://open?vault=${encodeURIComponent(paramBookmark)}&file=${encodeURIComponent(paramPath)}`;
